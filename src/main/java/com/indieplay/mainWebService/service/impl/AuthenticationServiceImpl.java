@@ -6,6 +6,7 @@ import com.indieplay.mainWebService.dto.SignInRequest;
 import com.indieplay.mainWebService.dto.SignUpRequest;
 import com.indieplay.mainWebService.exception.AlreadyExistsException;
 import com.indieplay.mainWebService.exception.AuthenticationException;
+import com.indieplay.mainWebService.exception.NotFoundException;
 import com.indieplay.mainWebService.mapper.UserMapper;
 import com.indieplay.mainWebService.service.AuthenticationService;
 import com.indieplay.mainWebService.service.UserService;
@@ -37,7 +38,7 @@ class AuthenticationServiceImpl implements AuthenticationService {
 
     @Override
     public User signIn(SignInRequest request) {
-        if (!userService.existsByUsername(request.getUsername())) throw new AlreadyExistsException(User.class);
+        if (!userService.existsByUsername(request.getUsername())) throw new NotFoundException(User.class);
         User user = userService.get(request.getUsername());
 
         if (user.getPassword().equals(request.getPassword())) {

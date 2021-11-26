@@ -4,5 +4,5 @@
 <@common.page>
     Add new user
     ${errorMessage!" " }
-    <@login.login "/singUp"></@login.login>
+    <@login.login "/signUp"></@login.login>
 </@common.page>
