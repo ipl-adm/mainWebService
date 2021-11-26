@@ -18,12 +18,12 @@ import java.util.Collections;
 
 @Service
 @AllArgsConstructor
-public class AuthenticationServiceImpl implements AuthenticationService {
+class AuthenticationServiceImpl implements AuthenticationService {
     private final UserService userService;
     private final UserMapper userMapper;
 
     @Override
-    public void signup(SignUpRequest request) {
+    public void signUp(SignUpRequest request) {
         if (userService.existsByUsername(request.getUsername())) throw new AlreadyExistsException(User.class);
 
         User user = userMapper.toEntity(request);
@@ -36,7 +36,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     }
 
     @Override
-    public User signin(SignInRequest request) {
+    public User signIn(SignInRequest request) {
         if (!userService.existsByUsername(request.getUsername())) throw new AlreadyExistsException(User.class);
         User user = userService.get(request.getUsername());
 

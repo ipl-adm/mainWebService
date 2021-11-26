@@ -5,7 +5,7 @@ import com.indieplay.mainWebService.dto.SignInRequest;
 import com.indieplay.mainWebService.dto.SignUpRequest;
 
 public interface AuthenticationService {
-    void signup(SignUpRequest request);
+    void signUp(SignUpRequest request);
 
-    User signin(SignInRequest request);
+    User signIn(SignInRequest request);
 }

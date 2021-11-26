@@ -2,7 +2,7 @@
 <#import "parts/login.ftlh" as login>
 
 <@common.page>
-    Login Page
-    <@login.login "/login" />
-    <a href="/registration">Add new user</a>
+    Add new user
+    ${errorMessage!" " }
+    <@login.login "/singUp"></@login.login>
 </@common.page>

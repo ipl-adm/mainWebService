@@ -15,21 +15,26 @@ import java.util.Map;
 public class RegistrationController {
     private final AuthenticationService authenticationService;
 
-    @GetMapping("/signup")
-    public String signup() {
-        return "signup";
+    @GetMapping("/signUp")
+    public String signUp() {
+        return "signUp";
     }
 
-    @PostMapping("/signup")
-    public String signup(SignUpRequest request, Map<String, Object> model) {
-        authenticationService.signup(request);
-        return "redirect:/login";
+    @GetMapping("/signIn")
+    public String signIn() {
+        return "signIn";
     }
 
-    @PostMapping("/signin")
-    public String signin(SignInRequest request, Map<String, Object> model) {
-        authenticationService.signin(request);
+    @PostMapping("/signUp")
+    public String signUp(SignUpRequest request, Map<String, Object> model) {
+        authenticationService.signUp(request);
+        return "redirect:/signUp";
+    }
 
-        return "sample success";
+    @PostMapping("/signIn")
+    public String signIn(SignInRequest request, Map<String, Object> model) {
+        authenticationService.signIn(request);
+
+        return "index";
     }
 }
