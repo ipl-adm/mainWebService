@@ -1,4 +1,4 @@
-package com.indieplay.mainWebService.domain;
+package com.indieplay.mainWebService.domain.entity;
 
 import org.springframework.security.core.GrantedAuthority;
 

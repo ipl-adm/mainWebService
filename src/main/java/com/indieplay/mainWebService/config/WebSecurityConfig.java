@@ -1,7 +1,7 @@
 package com.indieplay.mainWebService.config;
 
 import com.indieplay.mainWebService.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -13,9 +13,9 @@ import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 
 @Configuration
 @EnableWebSecurity
+@AllArgsConstructor
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
-    @Autowired
-    private UserService userService;
+    private final UserService userService;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -40,6 +40,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Bean
     public UserDetailsService createUserDetailsService() {
-        return new UserService();
+        return userService;
     }
 }

@@ -1,34 +1,35 @@
 package com.indieplay.mainWebService.controller;
 
-import com.indieplay.mainWebService.domain.Role;
-import com.indieplay.mainWebService.domain.User;
-import com.indieplay.mainWebService.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.indieplay.mainWebService.dto.SignInRequest;
+import com.indieplay.mainWebService.dto.SignUpRequest;
+import com.indieplay.mainWebService.service.AuthenticationService;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import java.util.Collections;
 import java.util.Map;
 
 @Controller
+@AllArgsConstructor
 public class RegistrationController {
+    private final AuthenticationService authenticationService;
 
-    @Autowired
-    private UserRepository userRepository;
-
-    @GetMapping("/registration")
-    public String registration() {
-        return "registration";
+    @GetMapping("/signup")
+    public String signup() {
+        return "signup";
     }
 
-    @PostMapping("/registration")
-    public String addUser(User user, Map<String, Object> model) {
-        if (userRepository.existsByUsername(user.getUsername()))
-
-        user.setRoles(Collections.singleton(Role.USER));
-        userRepository.save(user);
-
+    @PostMapping("/signup")
+    public String signup(SignUpRequest request, Map<String, Object> model) {
+        authenticationService.signup(request);
         return "redirect:/login";
+    }
+
+    @PostMapping("/signin")
+    public String signin(SignInRequest request, Map<String, Object> model) {
+        authenticationService.signin(request);
+
+        return "sample success";
     }
 }
